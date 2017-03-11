@@ -47,7 +47,7 @@ ReactRouterSSR.LoadWebpackStats = function(stats) {
 patchSubscribeData(ReactRouterSSR);
 
 ReactRouterSSR.Run = function(_getRoutes, clientOptions, serverOptions) {
-  var getRoutes = typeof (getRoutes) != 'function' ? (() => _getRoutes) : _getRoutes;
+  var getRoutes = typeof (_getRoutes) != 'function' ? (() => _getRoutes) : _getRoutes;
   
   if (!clientOptions) {
     clientOptions = {};

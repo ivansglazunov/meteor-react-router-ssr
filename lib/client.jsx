@@ -4,7 +4,7 @@ import { Router, browserHistory } from 'react-router';
 
 const ReactRouterSSR = {
   Run(_getRoutes, clientOptions) {
-    var getRoutes = typeof (getRoutes) != 'function' ? (() => _getRoutes) : _getRoutes;
+    var getRoutes = typeof (_getRoutes) != 'function' ? (() => _getRoutes) : _getRoutes;
 
     if (!clientOptions) {
       clientOptions = {};
