@@ -48,7 +48,10 @@ const ReactRouterSSR = {
         });
       }
 
-      var routes = getRoutes(window.location.hostname);
+
+      var routes = getRoutes({
+        host: window.location.host,
+      });
 
       let appGenerator = (addProps) => (
         <Router

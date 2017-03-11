@@ -83,8 +83,10 @@ ReactRouterSSR.Run = function(_getRoutes, clientOptions, serverOptions) {
         if (typeof serverOptions.historyHook === 'function') {
           history = serverOptions.historyHook(history);
         }
-
-        var routes = getRoutes(req.headers.host);
+        
+        var routes = getRoutes({
+          host: req.headers.host,
+        });
 
         ReactRouterMatch({ history, routes, location: req.url }, Meteor.bindEnvironment((err, redirectLocation, renderProps) => {
           if (err) {
