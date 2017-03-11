@@ -46,7 +46,8 @@ ReactRouterSSR.LoadWebpackStats = function(stats) {
 // this line just patches Subscribe and find mechanisms
 patchSubscribeData(ReactRouterSSR);
 
-ReactRouterSSR.Run = function(routes, clientOptions, serverOptions) {
+ReactRouterSSR.Run = function(_getRoutes, clientOptions, serverOptions) {
+  var getRoutes = typeof (getRoutes) != 'function' ? (() => _getRoutes) : _getRoutes;
   
   if (!clientOptions) {
     clientOptions = {};
@@ -82,6 +83,8 @@ ReactRouterSSR.Run = function(routes, clientOptions, serverOptions) {
         if (typeof serverOptions.historyHook === 'function') {
           history = serverOptions.historyHook(history);
         }
+
+        var routes = getRoutes(req.headers.host);
 
         ReactRouterMatch({ history, routes, location: req.url }, Meteor.bindEnvironment((err, redirectLocation, renderProps) => {
           if (err) {

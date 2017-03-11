@@ -3,7 +3,9 @@ import ReactDOM from 'react-dom';
 import { Router, browserHistory } from 'react-router';
 
 const ReactRouterSSR = {
-  Run(routes, clientOptions) {
+  Run(_getRoutes, clientOptions) {
+    var getRoutes = typeof (getRoutes) != 'function' ? (() => _getRoutes) : _getRoutes;
+
     if (!clientOptions) {
       clientOptions = {};
     }
@@ -45,6 +47,8 @@ const ReactRouterSSR = {
           clientOptions.rehydrateHook(rehydratedData);
         });
       }
+
+      var routes = getRoutes(window.location.hostname);
 
       let appGenerator = (addProps) => (
         <Router

@@ -14,7 +14,7 @@ What about your SEO? Just `npm install react-helmet` and hook it with `htmlHook(
 The `routes` argument takes the routes you want react-router to use (you don't have to call `ReactDOM.render()` yourself)<br />
 Read the [react-router documentation](https://github.com/rackt/react-router/tree/master/docs) for more informations.
 
-#### routes
+#### routes element|function(hostname):element
 Your main `<Route />` node of your application.<br />
 **Notice that there is no `<Router />` element, ReactRouterSSR takes care of creating it on the client and server with the correct parameters**
 
